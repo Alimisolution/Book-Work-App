@@ -41,13 +41,13 @@ const registerUser = async (req,res) => {
     const token = generateToken(user._id)
     
     res.status(201).json({
-        message: 'success',
         token,
         user: {
             id: user._id,
             username: user.username,
             email: user.email,
-            profileImage: user.profileImage
+            profileImage: user.profileImage,
+            createdAt: user.createdAt
         }
     })
     
@@ -81,13 +81,14 @@ const loginUser = async (req,res) => {
          
          const token = generateToken(user._id);
          return res.status(200).json({
-            message: 'success',
+
             token,
               user: {
             id: user._id,
             username: user.username,
             email: user.email,
-            profileImage: user.profileImage
+            profileImage: user.profileImage,
+            createdAt: user.createdAt
         }
         });
 

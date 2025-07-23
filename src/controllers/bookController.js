@@ -20,7 +20,6 @@ const createBook = async(req,res) =>{
     })
 
     res.status(201).json({
-        message: 'success',
         book: newBook
     })
     } catch (error) {
@@ -41,7 +40,7 @@ const getAllBooks = async(req,res) =>{
         const totalBooks = await Book.countDocuments();
 
         res.status(200).json({
-            message: 'success',
+
             books,
             currentPage: page,
             totalBooks,
@@ -87,10 +86,7 @@ const deleteBook = async(req,res) =>{
 const getUserBooks = async(req,res) =>{
     try {
         const books = await Book.find({user: req.user._id}).sort({createdAt: -1})
-        res.status(200).json({
-            message: 'success',
-            books
-        })
+        res.status(200).json({books})
     } catch (error) {
        res.status(500).json({message: 'Internal server error'});
     }
